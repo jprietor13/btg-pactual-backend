@@ -17,6 +17,7 @@ import { ConfigModule } from '@nestjs/config';
     DatabaseModule,
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env.local',
     }),
   ],
 })

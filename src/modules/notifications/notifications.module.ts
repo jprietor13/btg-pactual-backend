@@ -3,6 +3,6 @@ import { NotificationsService } from './notifications.service';
 
 @Module({
   providers: [NotificationsService],
-  exports: [NotificationsService], // 👈 ESTO ES CLAVE
+  exports: [NotificationsService],
 })
 export class NotificationsModule {}

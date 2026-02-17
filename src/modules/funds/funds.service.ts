@@ -37,7 +37,7 @@ export class FundsService {
 
     if (user.balance < fund.minimumAmount) {
       throw new BadRequestException(
-        `No balance available to subscribe to fund ${fund.name}`,
+        `No tiene saldo disponible para vincularse al fondo ${fund.name}`,
       );
     }
 
