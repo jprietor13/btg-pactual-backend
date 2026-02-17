@@ -18,7 +18,7 @@ import { JwtGuard } from 'src/common/guards/jwt.guard';
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @ApiOperation({ summary: 'Registrar un nuevo usuario' })
   @ApiResponse({ status: 201, description: 'User successfully registered' })
@@ -36,6 +36,11 @@ export class AuthController {
     return this.authService.login(dto.email, dto.password);
   }
 
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Obtener usuario autenticado' })
+  @ApiResponse({ status: 200, description: 'Authenticated user returned' })
+  @UseGuards(JwtGuard)
+  @Get('me')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Obtener usuario autenticado' })
   @ApiResponse({ status: 200, description: 'Authenticated user returned' })
