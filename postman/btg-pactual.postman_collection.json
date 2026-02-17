@@ -1,0 +1,129 @@
+{
+  "info": {
+    "_postman_id": "4e225945-32fc-4fde-8466-a037022a1427",
+    "name": "btg-pactual",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "register",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Juan\",\n  \"email\": \"juan@test.com\",\n  \"password\": \"123456\",\n  \"notificationPreference\": \"SMS\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/register",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "register"]
+        }
+      }
+    },
+    {
+      "name": "login",
+      "request": {
+        "auth": { "type": "noauth" },
+        "method": "POST",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"juan@test.com\",\n  \"password\": \"123456\"\n}",
+          "options": { "raw": { "language": "json" } }
+        },
+        "url": {
+          "raw": "{{base_url}}/auth/login",
+          "host": ["{{base_url}}"],
+          "path": ["auth", "login"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const response = pm.response.json();",
+              "pm.collectionVariables.set('token', response.access_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "all_funds",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/funds",
+          "host": ["{{base_url}}"],
+          "path": ["funds"]
+        }
+      }
+    },
+    {
+      "name": "subscribe",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/funds/subscribe/{{fundId}}",
+          "host": ["{{base_url}}"],
+          "path": ["funds", "subscribe", "{{fundId}}"]
+        }
+      }
+    },
+    {
+      "name": "transactions",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/funds/transactions",
+          "host": ["{{base_url}}"],
+          "path": ["funds", "transactions"]
+        }
+      }
+    },
+    {
+      "name": "cancel",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [{ "key": "token", "value": "{{token}}", "type": "string" }]
+        },
+        "method": "POST",
+        "url": {
+          "raw": "{{base_url}}/funds/cancel/{{fundId}}",
+          "host": ["{{base_url}}"],
+          "path": ["funds", "cancel", "{{fundId}}"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "fundId",
+      "value": ""
+    }
+  ]
+}

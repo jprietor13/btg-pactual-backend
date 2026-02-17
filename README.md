@@ -166,6 +166,31 @@ Incluye:
 
 ------------------------------------------------------------------------
 
+# Despliegue
+
+El proyecto está dockerizado y listo para ser desplegado en cualquier 
+entorno compatible con contenedores (Docker, ECS, EKS, EC2, etc.).
+
+Dado que el cliente realizará el despliegue, se entrega el repositorio 
+preparado para integración en infraestructura AWS o cualquier plataforma compatible.
+
+------------------------------------------------------------------------
+
+## Colección Postman
+
+La colección de Postman se encuentra en:
+
+postman/btg-pactual.postman_collection.json
+
+Para utilizarla:
+
+1. Importar la colección en Postman.
+2. Definir la variable `base_url` (por defecto http://localhost:3000).
+3. Ejecutar login y guardar el token en la variable `token`.
+4. Probar los endpoints protegidos.
+
+------------------------------------------------------------------------
+
 # Modelo Relacional (PostgreSQL)
 
 Ubicado en:
