@@ -23,7 +23,7 @@ export class User {
   @Prop({ default: 'CLIENT' })
   role: string;
 
-  @Prop({ enum: ['EMAIL', 'SMS'], default: 'EMAIL' })
+  @Prop({ type: String, enum: ['EMAIL', 'SMS'], default: 'EMAIL' })
   notificationPreference: string;
 }
 

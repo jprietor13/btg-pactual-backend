@@ -1,4 +1,9 @@
-import { IsEmail, IsString } from 'class-validator';
+import { IsEmail, IsString, IsOptional, IsEnum } from 'class-validator';
+
+export enum NotificationPreference {
+  EMAIL = 'EMAIL',
+  SMS = 'SMS',
+}
 
 export class RegisterDto {
   @IsString()
@@ -9,4 +14,8 @@ export class RegisterDto {
 
   @IsString()
   password: string;
+
+  @IsOptional()
+  @IsEnum(NotificationPreference)
+  notificationPreference?: NotificationPreference;
 }

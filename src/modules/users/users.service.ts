@@ -14,10 +14,11 @@ export class UsersService {
   async create(userData: Partial<User>): Promise<User> {
     const hashedPassword = await bcrypt.hash(userData.password, 10);
 
-    const user = new this.userModel({
-      ...userData,
+    const user = await this.userModel.create({
+      name: userData.name,
+      email: userData.email,
       password: hashedPassword,
-      balance: 500000,
+      notificationPreference: userData.notificationPreference || 'EMAIL',
     });
 
     return user.save();
