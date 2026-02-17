@@ -1,98 +1,200 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Reto Técnico -- Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Node](https://img.shields.io/badge/node-v20-green)
+![NestJS](https://img.shields.io/badge/nestjs-framework-red)
+![MongoDB](https://img.shields.io/badge/mongodb-database-green)
+![PostgreSQL](https://img.shields.io/badge/postgresql-relational-blue)
+![Docker](https://img.shields.io/badge/docker-containerized-blue)
+![Jest](https://img.shields.io/badge/jest-unit--tested-success)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+------------------------------------------------------------------------
 
-## Description
+## Descripción General
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Este proyecto corresponde a la implementación del backend para el reto
+técnico.
 
-## Project setup
+Incluye:
 
-```bash
-$ npm install
-```
+-   API REST desarrollada con NestJS
+-   Modelado de datos NoSQL con MongoDB
+-   Autenticación JWT
+-   Validaciones de reglas de negocio
+-   Pruebas unitarias con Jest
+-   Documentación con Swagger
+-   Entorno Dockerizado
+-   Modelado relacional en PostgreSQL (Parte 2)
+-   Implementación de consulta SQL avanzada
 
-## Compile and run the project
+La solución sigue principios de arquitectura limpia y buenas prácticas
+de producción.
 
-```bash
-# development
-$ npm run start
+------------------------------------------------------------------------
 
-# watch mode
-$ npm run start:dev
+# Arquitectura
 
-# production mode
-$ npm run start:prod
-```
+Estructura modular:
 
-## Run tests
+src/ ├── modules/ │ ├── auth/ │ ├── users/ │ ├── funds/ │ ├──
+transactions/ │ └── notifications/ │ ├── database/ │ └── schemas/ │ └──
+common/
 
-```bash
-# unit tests
-$ npm run test
+### Principios aplicados
 
-# e2e tests
-$ npm run test:e2e
+-   Separación de responsabilidades
+-   Inyección de dependencias
+-   Lógica de negocio en capa de servicio
+-   Manejo adecuado de errores
+-   Pruebas unitarias sobre lógica crítica
+-   Configuración Docker-first
 
-# test coverage
-$ npm run test:cov
-```
+------------------------------------------------------------------------
 
-## Deployment
+# Decisiones Técnicas
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## Elección de MongoDB (Parte 1)
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+Se utilizó MongoDB debido a que el enunciado solicitaba un modelo
+NoSQL.\
+Permite modelar transacciones y relaciones flexibles sin necesidad de
+joins complejos, manteniendo alta escalabilidad horizontal.
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+## Elección de PostgreSQL (Parte 2)
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Para la parte relacional se implementó PostgreSQL con:
 
-## Resources
+-   Integridad referencial completa (FK)
+-   Claves primarias compuestas
+-   Índices para optimización
+-   Restricciones CHECK
 
-Check out a few resources that may come in handy when working with NestJS:
+## Prevención de doble suscripción
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+La lógica valida la última transacción registrada del usuario para
+determinar el estado actual del fondo, evitando inconsistencias
+financieras.
 
-## Support
+## Uso de NOT EXISTS en SQL
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+La consulta requerida utiliza una subconsulta correlacionada con NOT
+EXISTS para garantizar que no exista ninguna sucursal donde el producto
+esté disponible y el cliente no la haya visitado.
 
-## Stay in touch
+Esta aproximación asegura precisión lógica y evita falsos positivos que
+podrían generarse con JOIN simples.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Testing estratégico
 
-## License
+Las pruebas unitarias cubren la lógica crítica financiera:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+-   Validación de saldo
+-   Bloqueo de doble suscripción
+-   Restauración correcta de saldo
+-   Registro de transacciones
+
+Se mockean dependencias externas para garantizar aislamiento real de la
+capa de servicio.
+
+------------------------------------------------------------------------
+
+# Autenticación
+
+Autenticación basada en JWT.
+
+Endpoints:
+
+-   POST /auth/register
+-   POST /auth/login
+
+Los endpoints protegidos requieren:
+
+Authorization: Bearer `<token>`{=html}
+
+------------------------------------------------------------------------
+
+# Lógica de Negocio -- Módulo Funds
+
+### Suscripción a fondo
+
+-   Valida existencia del fondo
+-   Previene doble suscripción
+-   Valida saldo disponible
+-   Descuenta saldo
+-   Crea transacción
+-   Genera notificación
+
+### Cancelación
+
+-   Devuelve saldo
+-   Registra transacción de cancelación
+
+------------------------------------------------------------------------
+
+# Pruebas Unitarias
+
+Ejecutar:
+
+npm run test
+
+------------------------------------------------------------------------
+
+# Swagger
+
+Disponible en:
+
+http://localhost:3000/docs
+
+------------------------------------------------------------------------
+
+# Docker
+
+Levantar servicios:
+
+docker compose up --build
+
+Incluye:
+
+-   MongoDB
+-   PostgreSQL
+-   API
+
+------------------------------------------------------------------------
+
+# Modelo Relacional (PostgreSQL)
+
+Ubicado en:
+
+database/
+
+Archivos:
+
+-   01_schema.sql
+-   02_tables.sql
+-   03_constraints_indexes.sql
+-   04_query.sql
+-   05_insert_data.sql
+
+------------------------------------------------------------------------
+
+# Consulta SQL Implementada
+
+Obtener los nombres de los clientes que tienen inscrito algún producto
+disponible solo en las sucursales que visitan.
+
+Implementada con NOT EXISTS para garantizar coherencia lógica.
+
+------------------------------------------------------------------------
+
+# Calidad Técnica
+
+-   Arquitectura modular limpia
+-   Lógica financiera consistente
+-   Integridad referencial en SQL
+-   Entorno completamente dockerizado
+-   Testing estratégico sobre reglas críticas
+
+------------------------------------------------------------------------
+
+# Autor
+
+Juan Prieto
