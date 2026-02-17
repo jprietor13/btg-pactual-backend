@@ -21,5 +21,19 @@ services:
     volumes:
       - mongo_data:/data/db
 
+  postgres:
+    image: postgres:15
+    container_name: btg-postgres
+    environment:
+      POSTGRES_USER: btg_user
+      POSTGRES_PASSWORD: btg_password
+      POSTGRES_DB: btg_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+
 volumes:
   mongo_data:
+  postgres_data:
