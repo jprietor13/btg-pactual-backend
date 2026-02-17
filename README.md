@@ -128,6 +128,12 @@ Authorization: Bearer `<token>`{=html}
 -   Devuelve saldo
 -   Registra transacción de cancelación
 
+
+### Notificaciones
+
+Las notificaciónes está implementadas mediante un servicio desacoplado 
+listo para integrarse con proveedores como SendGrid o Twilio.
+
 ------------------------------------------------------------------------
 
 # Pruebas Unitarias
