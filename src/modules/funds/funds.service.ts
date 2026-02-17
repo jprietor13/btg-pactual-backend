@@ -35,6 +35,16 @@ export class FundsService {
 
     if (!fund) throw new NotFoundException('Fund not found');
 
+    const lastTransaction: TransactionDocument | null = await this.transactionModel
+        .findOne({ userId, fundId })
+        .sort({ createdAt: -1 });
+
+    if (lastTransaction && lastTransaction.type === 'SUBSCRIBE') {
+      throw new BadRequestException(
+        `Ya esta inscrito en el fondo ${fund.name}`,
+      );
+    }
+
     if (user.balance < fund.minimumAmount) {
       throw new BadRequestException(
         `No tiene saldo disponible para vincularse al fondo ${fund.name}`,
@@ -83,4 +93,3 @@ export class FundsService {
     return this.transactionModel.find({ userId });
   }
 }
-

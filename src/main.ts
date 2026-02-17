@@ -2,10 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { getModelToken } from '@nestjs/mongoose';
 import { Fund } from './database/schemas/fund.schema';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+
 
   const fundModel = app.get(getModelToken(Fund.name));
 
@@ -20,5 +21,19 @@ async function bootstrap() {
     ]);
     console.log('Funds seeded');
   }
+
+  const config = new DocumentBuilder()
+    .setTitle('BTG-Pactual-API')
+    .setDescription(
+      'API para la gestión de suscripciones y transacciones de fondos',
+    )
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
+
+  await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
