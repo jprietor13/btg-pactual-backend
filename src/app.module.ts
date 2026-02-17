@@ -5,6 +5,7 @@ import { FundsModule } from './modules/funds/funds.module';
 import { TransactionsModule } from './modules/transactions/transactions.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -14,6 +15,9 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
     AuthModule,
     NotificationsModule,
     DatabaseModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
   ],
 })
 export class AppModule {}
