@@ -33,11 +33,26 @@ de producción.
 
 # Arquitectura
 
+La arquitectura sigue un enfoque modular basado en separación de responsabilidades, facilitando escalabilidad y mantenibilidad.
+
 Estructura modular:
 
-src/ ├── modules/ │ ├── auth/ │ ├── users/ │ ├── funds/ │ ├──
-transactions/ │ └── notifications/ │ ├── database/ │ └── schemas/ │ └──
-common/
+```
+src/
+│
+├── auth/              → Registro, login y estrategia JWT
+├── users/             → Gestión de usuarios y persistencia
+├── funds/             → Lógica principal de fondos (suscripción y cancelación)
+├── transactions/      → Historial de transacciones financieras
+├── notifications/     → Servicio de notificaciones (Email / SMS según preferencia)
+├── common/            → Guards, decorators y utilidades compartidas
+│
+├── database/
+│   └── schemas/       → Esquemas de Mongoose (User, Fund, Transaction)
+│
+├── app.module.ts      → Configuración global de módulos
+└── main.ts            → Punto de arranque y configuración de Swagger
+```
 
 ### Principios aplicados
 
@@ -229,3 +244,5 @@ Implementada con NOT EXISTS para garantizar coherencia lógica.
 # Autor
 
 Juan Prieto
+Full Stack Developer
+jp1739@gmail.com
