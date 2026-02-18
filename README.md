@@ -151,6 +151,26 @@ listo para integrarse con proveedores como SendGrid o Twilio.
 
 ------------------------------------------------------------------------
 
+## Instalación
+
+``` bash
+git clone <https://github.com/jprietor13/btg-pactual-backend.git>
+cd btg-pactual-backend
+```
+
+------------------------------------------------------------------------
+
+## Variables de entorno
+
+Crear archivo `.env.local` en la raíz:
+
+    PORT=3000
+    ONGO_URI=mongodb://localhost:27017/btg-pactual-backend
+    JWT_SECRET=super-secret-key
+
+------------------------------------------------------------------------
+
+
 # Pruebas Unitarias
 
 Ejecutar:
