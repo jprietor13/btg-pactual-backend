@@ -35,7 +35,8 @@ export class FundsService {
 
     if (!fund) throw new NotFoundException('Fund not found');
 
-    const lastTransaction: TransactionDocument | null = await this.transactionModel
+    const lastTransaction: TransactionDocument | null =
+      await this.transactionModel
         .findOne({ userId, fundId })
         .sort({ createdAt: -1 });
 
@@ -72,6 +73,14 @@ export class FundsService {
     const fund = await this.fundModel.findById(fundId);
 
     if (!fund) throw new NotFoundException('Fund not found');
+
+    const lastTransaction = await this.transactionModel
+      .findOne({ userId, fundId })
+      .sort({ createdAt: -1 });
+
+    if (!lastTransaction || lastTransaction.type === 'CANCEL') {
+      throw new BadRequestException(`No está suscrito al fondo ${fund.name}`);
+    }
 
     user.balance += fund.minimumAmount;
     await user.save();
