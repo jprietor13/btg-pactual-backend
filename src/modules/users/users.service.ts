@@ -19,6 +19,7 @@ export class UsersService {
       email: userData.email,
       password: hashedPassword,
       notificationPreference: userData.notificationPreference || 'EMAIL',
+      balance: 500000,
     });
 
     return user.save();

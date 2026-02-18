@@ -3,7 +3,6 @@ import {
   Controller,
   Post,
   Get,
-  Req,
   UseGuards,
   HttpCode,
   HttpStatus,
@@ -12,13 +11,19 @@ import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 
-import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiBearerAuth,
+} from '@nestjs/swagger';
 import { JwtGuard } from 'src/common/guards/jwt.guard';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @ApiOperation({ summary: 'Registrar un nuevo usuario' })
   @ApiResponse({ status: 201, description: 'User successfully registered' })
@@ -46,7 +51,7 @@ export class AuthController {
   @ApiResponse({ status: 200, description: 'Authenticated user returned' })
   @UseGuards(JwtGuard)
   @Get('me')
-  getProfile(@Req() req) {
-    return req.user;
+  async getProfile(@CurrentUser() user) {
+    return this.authService.getProfile(user.userId);
   }
 }
