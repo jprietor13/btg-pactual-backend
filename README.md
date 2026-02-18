@@ -165,7 +165,7 @@ cd btg-pactual-backend
 Crear archivo `.env.local` en la raíz:
 
     PORT=3000
-    ONGO_URI=mongodb://localhost:27017/btg-pactual-backend
+    MONGO_URI=mongodb://localhost:27017/btg-pactual-backend
     JWT_SECRET=super-secret-key
 
 ------------------------------------------------------------------------
