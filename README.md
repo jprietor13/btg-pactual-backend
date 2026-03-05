@@ -1,4 +1,4 @@
-# Reto Técnico -- Backend
+# BTG Pactual -- Backend
 
 ![Node](https://img.shields.io/badge/node-v20-green)
 ![NestJS](https://img.shields.io/badge/nestjs-framework-red)
